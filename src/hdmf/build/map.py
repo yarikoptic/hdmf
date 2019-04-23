@@ -1363,14 +1363,11 @@ class TypeMap(object):
         """
         Check if dtype represents a type that is a child
         """
-        ret = False
         if isinstance(dtype, tuple):
             for sub in dtype:
-                ret = ret or self.__ischild(sub)
-        else:
-            if isinstance(dtype, type) and issubclass(dtype, (Container, Data, DataRegion)):
-                ret = True
-        return ret
+                if self.__ischild(sub):
+                  return True
+        return isinstance(dtype, type) and issubclass(dtype, (Container, Data, DataRegion)):
 
     def __get_cls_dict(self, base, addl_fields):
         # TODO: fix this to be more maintainable and smarter
