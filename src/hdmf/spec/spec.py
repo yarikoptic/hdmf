@@ -327,6 +327,7 @@ class BaseStorageSpec(Spec):
                 self[self.inc_key()] = data_type_inc.data_type_def
             else:
                 self[self.inc_key()] = data_type_inc
+
         if data_type_def is not None:
             self.pop('required', None)
             self[self.def_key()] = data_type_def
@@ -340,6 +341,9 @@ class BaseStorageSpec(Spec):
         if resolve:
             self.resolve_spec(data_type_inc)
             self.__resolved = True
+        if self.get(self.inc_key(), 'def1') == self.get(self.def_key(), 'def2'):
+            import pdb; pdb.set_trace()
+            self[self.inc_key()] = data_type_inc.data_type_inc
 
     @property
     def default_name(self):
