@@ -49,7 +49,7 @@ class SpecNamespace(dict):
         if full_name is not None:
             self['full_name'] = full_name
         if version is None:
-            raise TypeError('SpecNamespace missing arg `version`. Please specify a version for the extension.')
+            warn('SpecNamespace %r is missing a non-degenerate `version`.' % name)
         self['version'] = version
         if date is not None:
             self['date'] = date
